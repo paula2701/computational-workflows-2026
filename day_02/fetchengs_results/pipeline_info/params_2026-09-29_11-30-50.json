@@ -1,0 +1,22 @@
+{
+    "input": "smallest_runs.csv",
+    "outdir": "fetchengs_results",
+    "nf_core_rnaseq_strandedness": "auto",
+    "sample_mapping_fields": "experiment_accession,run_accession,sample_accession,experiment_alias,run_alias,sample_alias,experiment_title,sample_title,sample_description",
+    "download_method": "ftp",
+    "skip_fastq_download": false,
+    "publish_dir_mode": "copy",
+    "plaintext_email": false,
+    "monochrome_logs": false,
+    "help": false,
+    "help_full": false,
+    "show_hidden": false,
+    "version": false,
+    "modules_testdata_base_path": "s3://ngi-igenomes/testdata/nf-core/modules/",
+    "pipelines_testdata_base_path": "s3://ngi-igenomes/testdata/nf-core/pipelines/fetchngs/1.15.0/",
+    "trace_report_suffix": "2026-09-29_11-30-44",
+    "custom_config_version": "master",
+    "custom_config_base": "https://raw.githubusercontent.com/nf-core/configs/master",
+    "validate_params": true,
+    "force_sratools_download": false
+}
