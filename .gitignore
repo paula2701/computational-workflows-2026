@@ -1,0 +1,11 @@
+# Nextflow runtime
+work/
+.nextflow/
+.nextflow.log*
+null/
+
+# Pipeline outputs
+results/
+
+# Jupyter
+.ipynb_checkpoints/
