@@ -9,3 +9,9 @@ results/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# day_02
+day_02/SRA_runs/
+day_02/rnaseq_results2/
+day_02/rnaseq_results3/
+day_02/rnaseq_results4/
