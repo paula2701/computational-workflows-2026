@@ -1,11 +1,11 @@
 FROM debian:bookworm-slim
 
-LABEL image.author.name="yourname"
+LABEL image.author.name="paula"
 LABEL image.author.email="yourmail"
 
 # Install dependencies
 RUN apt-get update && \
-    apt-get install -y curl ca-certificates && \
+    apt-get install -y curl ca-certificates tar && \
     rm -rf /var/lib/apt/lists/*
 
 # Download and install Salmon
