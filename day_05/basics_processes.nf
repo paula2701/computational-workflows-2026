@@ -6,8 +6,117 @@ params {
 
 process SAYHELLO {
     debug true
+    script:
+    """
+    echo Hello World!
+    """
 }
 
+process SAYHELLO_PYTHON{
+    debug true
+
+    script:
+    """
+    python3 -c 'print("Hello World!")'
+    """
+}
+
+process SAYHELLO_PARAM{
+    
+    input:
+    val greeting_ch
+
+    script:
+    """
+    echo "$greeting_ch"
+    """
+}
+
+process SAYHELLO_FILE{
+    debug true
+
+    input:
+    val greeting
+
+    output:
+    path "greeting.txt"
+
+    script:
+    """
+    echo "$greeting" > greeting.txt
+    echo "$greeting"
+    """
+}
+
+process UPPERCASE{
+    debug true
+
+    input:
+    val greeting
+
+    output:
+    path "uppercase.txt"
+
+    script:
+    """
+    echo "$greeting" | tr '[:lower:]' '[:upper:]' > uppercase.txt
+    """
+}
+
+process PRINTUPPER{
+    debug true
+
+    input:
+    path input_file
+
+    script:
+    """
+    cat "$input_file"
+    """
+}
+
+process COMPRESS{
+    input:
+    path input_file
+    val format
+
+    output:
+    path "compressed_*"
+
+    script:
+    if (format == 'zip') {
+        """
+        zip compressed_zip.zip "$input_file"
+        """
+    }
+    else if (format == 'gzip') {
+        """
+        gzip -c "$input_file" > compressed_gzip.gz
+        """
+    }
+    else if (format == 'bzip2') {
+        """
+        bzip2 -c "$input_file" > compressed_bzip2.bz2
+        """
+    }
+}
+
+process WRITETOFILE{
+
+    publishDir "results", mode: 'copy'
+
+    input:
+    val people
+
+    output:
+    path "names.tsv"
+
+    script:
+    def lines = people.collect {p -> "${p.name}\t${p.title}"}.join("\n")
+    """
+    printf "${lines}" > names.tsv
+    """
+}
 
 
 workflow {
@@ -53,12 +162,24 @@ workflow {
     //          Print out the path to the zipped file in the console
     if (params.step == 7) {
         greeting_ch = Channel.of("Hello world!")
+        uppercase_ch = UPPERCASE(greeting_ch)
+        zipped_ch = COMPRESS (uppercase_ch,params.zip)
+        zipped_ch.view()
     }
 
     // Task 8 - Create a process that zips the file created in the UPPERCASE process in "zip", "gzip" AND "bzip2" format. Print out the paths to the zipped files in the console
 
     if (params.step == 8) {
         greeting_ch = Channel.of("Hello world!")
+        uppercase_ch = UPPERCASE(greeting_ch)
+
+        uppercase_file = uppercase_ch.first()
+
+        format_ch = Channel.of('zip', 'gzip', 'bzip2')
+
+        zipped_ch = COMPRESS(uppercase_file, format_ch)
+
+        zipped_ch.view()
     }
 
     // Task 9 - Create a process that reads in a list of names and titles from a channel and writes them to a file.
@@ -75,9 +196,9 @@ workflow {
             ['name': 'Dobby', 'title': 'hero'],
         )
 
-        in_ch
-            | WRITETOFILE
-            // continue here
+        people_ch = in_ch.collect()
+
+        WRITETOFILE(people_ch)
     }
 
 }
