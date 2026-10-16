@@ -1,10 +1,10 @@
 producer_class	xtools.gsea.Gsea
-producer_timestamp	1790631002875
+producer_timestamp	1792141200453
 param	zip_report	false
 param	num	100
 param	scoring_scheme	weighted
 param	norm	meandiv
-param	out	/home/paula/.ssh/computational-workflows-2026/day_01/work/7e/95342484edae589c47d40fb32bb6eb/.
+param	out	/home/paula/.ssh/computational-workflows-2026/day_01/work/00/3402cb4438ee66fd91867599a1106a/.
 param	mode	Max_probe
 param	include_only_symbols	true
 param	set_max	500
@@ -15,7 +15,7 @@ param	order	descending
 param	rnd_seed	10
 param	rpt_label	treatment_mCherry_hND6__SRP254919.mh.all.v2022.1.Mm.symbols
 param	set_min	15
-param	res	/home/paula/.ssh/computational-workflows-2026/day_01/work/7e/95342484edae589c47d40fb32bb6eb/treatment_mCherry_hND6__SRP254919.mh.all.v2022.1.Mm.symbols.treatment_mCherry_hND6__SRP254919.gct
+param	res	/home/paula/.ssh/computational-workflows-2026/day_01/work/00/3402cb4438ee66fd91867599a1106a/treatment_mCherry_hND6__SRP254919.mh.all.v2022.1.Mm.symbols.treatment_mCherry_hND6__SRP254919.gct
 param	chip	treatment_mCherry_hND6__SRP254919.mh.all.v2022.1.Mm.symbols.treatment_mCherry_hND6__SRP254919.chip
 param	create_svgs	false
 param	cls	treatment_mCherry_hND6__SRP254919.mh.all.v2022.1.Mm.symbols.treatment_mCherry_hND6__SRP254919.cls#hND6_versus_mCherry
