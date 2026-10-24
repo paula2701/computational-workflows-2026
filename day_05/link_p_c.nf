@@ -15,6 +15,7 @@ process SPLITLETTERS {
 } 
 
 process CONVERTTOUPPER {
+    debug true
     publishDir "results", mode: 'copy'
 
     input: 

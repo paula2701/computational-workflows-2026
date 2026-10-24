@@ -22,6 +22,7 @@ process SAYHELLO_PYTHON{
 }
 
 process SAYHELLO_PARAM{
+    debug true
     
     input:
     val greeting_ch
